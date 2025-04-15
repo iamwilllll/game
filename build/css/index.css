@@ -324,7 +324,7 @@ html {
 /* ----- Set margins and padding in the body to avoid unwanted spaces ----- */
 body {
   font-family: "Montserrat", sans-serif;
-  color: 900;
+  color: #000000;
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 1.8rem;
@@ -336,7 +336,7 @@ body {
 
 /** ----- Global styles ----- **/
 p {
-  color: 900;
+  color: #000000;
   font-size: 2rem;
 }
 
@@ -389,4 +389,99 @@ img {
   max-width: 120rem;
   margin: 0 auto;
   padding: 5rem;
+}
+
+.button {
+  background: none;
+  border: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-none {
+  display: none;
+}
+
+/*Layout styles*/
+body {
+  background-color: #003c5f;
+}
+
+.cards {
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  gap: 5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+}
+.cards__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+.cards__content {
+  width: 20rem;
+  position: relative;
+}
+.cards__item {
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  width: 20rem;
+  z-index: 1;
+  transition: 2s;
+}
+.cards__item:hover {
+  cursor: pointer;
+}
+.cards__close {
+  position: relative;
+  left: 35rem;
+  transition: 0.2s;
+  top: -5rem;
+}
+.cards__close:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.cards__play {
+  background-color: #003c5f;
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+  transition: 0.2s;
+  color: #ffffff;
+}
+.cards__play:hover {
+  transform: scale(1.1);
+  background-color: rgb(0, 27.7894736842, 44);
+  cursor: pointer;
+}
+
+.active {
+  transform: translateY(-12rem);
+}
+
+.dot {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(8rem, -12rem);
+  z-index: -1;
+  transition: 1s;
+}
+
+.show-dot {
+  opacity: 1;
 }/*# sourceMappingURL=index.css.map */

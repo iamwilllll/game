@@ -3,15 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="build/css/index.css" />
         <title>Document</title>
     </head>
     <body>
         <main>
-            <section>
-                <div id="game-container"></div>
+            <section class="cards display-none">
+                <button class="cards__close button">
+                    <img src="/build/images/svg/close-icon.svg" alt="" />
+                </button>
+                <div class="cards__container" id="game"></div>
+                <button class="cards__play button" id="play-again">Play again</button>
             </section>
         </main>
     </body>
-    <script src="script.js"></script>
+    <script src="build/js/main.js"></script>
 </html>

@@ -1,55 +1,84 @@
-// Número de cartas que se desean crear
-let num = 3;
+// Selects the modal element that contains the cards
+const gameModal = document.querySelector('.cards');
 
-//generar las cartas mediante JS
-for (let i = 0; i < num; i++) {
-    document.querySelector('#game-container').innerHTML += `
-    <div class="card-container">
-        <div class="card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
-                <path fill="#1c2833" d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m-3 13c-.6 0-1.1-.3-1.5-.7l1 2.7h-3l1-2.7c-.4.4-.9.7-1.5.7c-1.1 0-2-.9-2-2s.9-2 2-2h.3c-.2-.3-.3-.7-.3-1c0-1.1.9-2 2-2s2 .9 2 2c0 .4-.1.7-.3 1h.3c1.1 0 2 .9 2 2s-.9 2-2 2" />
-            </svg>
-        </div>
-        <div class="dot"></div>
-    </div>
-    `;
-}
+/*----------This is temporary code for testing----------*/
+// Starts the game immediately when the page loads
+startGame();
+// Shows the game modal by toggling CSS classes
+gameModal.classList.toggle('display-none');
+gameModal.classList.toggle('display-flex');
+/*----------This is temporary----------*/
 
-// Generar un número aleatorio entre 1 y 3
-const randomNumber = Math.floor(Math.random() * 4) + 1;
-
-// Definir el número de intentos permitidos
-let attempts = 2;
-
-// Acceder a todas las cartas y recorrerlas con el DOM
-document.querySelectorAll('.card').forEach((card, index) => {
-    // Obtener el punto oculto asociado a la carta
-    const dot = card.parentElement.querySelector('.dot');
-    // Establecer el número de carta visible (comienza en 1)
-    const clickedNum = index + 1;
-    // Agregar un evento al hacer clic sobre la carta
-    card.addEventListener('click', () => {
-        // Verificar si aún quedan intentos disponibles
-        if (attempts) {
-            // Si el número de la carta coincide con el número ganador
-            if (clickedNum === randomNumber) {
-                // Mostrar el contenido oculto de la carta
-                card.classList.add('active');
-                // Mostrar el punto después de 0.5 segundos para que no colisione con la carta
-                setTimeout(() => {
-                    dot.classList.add('show-dot');
-                }, 500);
-                // Eliminar todos los intentos restantes (se ganó el juego)
-                attempts = 0;
-            } else {
-                // Si se falla, mostrar que debajo de la carta no hay nada
-                card.classList.toggle('reveal');
-                // Restar un intento
-                --attempts;
-            }
-        } else {
-            // Si ya no quedan intentos, se podría mostrar un mensaje aquí
-            // Ejemplo: alert('¡Se acabaron los intentos!');
-        }
-    });
+// Adds a click event to the "Play" button to open the modal and start the game
+document.querySelector('#play').addEventListener('click', () => {
+    gameModal.classList.toggle('display-none');
+    gameModal.classList.toggle('display-flex');
+    startGame();
 });
+
+// Main function to initialize and restart the game
+function startGame() {
+    let num = 3; // Number of cards
+    let attempts = 2; // Number of attempts allowed
+
+    const cardsContainer = document.querySelector('.cards__container');
+    cardsContainer.innerHTML = ''; // Clears any previous cards
+
+    // Close button logic — add event listener only once
+    const closeBtn = document.querySelector('.cards__close');
+    if (!closeBtn.dataset.listenerAdded) {
+        closeBtn.addEventListener('click', () => {
+            gameModal.classList.toggle('display-none');
+            gameModal.classList.toggle('display-flex');
+        });
+        // Marks that the listener has already been added
+        closeBtn.dataset.listenerAdded = 'true';
+    }
+
+    // Creates the card elements dynamically and inserts them into the container
+    for (let i = 0; i < num; i++) {
+        cardsContainer.innerHTML += `
+            <div class="cards__content">
+                <div class="cards__item">
+                    <img src="/build/images/webp/card.webp" alt="">
+                </div>
+                <div class="dot">
+                    <img src="/build/images/webp/coin.webp" alt="">     
+                </div>
+            </div>
+        `;
+    }
+
+    // Adds event to the "Play Again" button to restart the game
+    const playAgainBtn = document.querySelector('#play-again');
+    playAgainBtn.addEventListener('click', () => {
+        startGame(); // Restarts the game
+    });
+
+    // Generates a random number between 1 and the number of cards
+    const randomNumber = Math.floor(Math.random() * num) + 1;
+
+    // Adds click events to each card
+    document.querySelectorAll('.cards__item').forEach((card, index) => {
+        const dot = card.parentElement.querySelector('.dot'); // Gets the coin image
+        const clickedNum = index + 1; // Card number starting from 1
+
+        card.addEventListener('click', () => {
+            if (attempts) {
+                // If there are remaining attempts
+                if (clickedNum === randomNumber) {
+                    // Correct card selected
+                    card.classList.add('active');
+                    setTimeout(() => {
+                        dot.classList.add('show-dot'); // Reveals the coin
+                    }, 500);
+                    attempts = 0; // End the game
+                } else {
+                    // Incorrect card selected
+                    card.classList.add('active');
+                    --attempts; // Reduce attempts
+                }
+            }
+        });
+    });
+}
