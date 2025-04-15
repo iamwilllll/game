@@ -1,0 +1,34 @@
+{
+    "name": "game",
+    "version": "1.0.0",
+    "description": "A card guessing game",
+    "main": "gulpfile.js",
+    "type": "module",
+    "scripts": {
+        "dev": "gulp"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iamwilllll/game.git"
+    },
+    "keywords": [
+        "HTML",
+        "JavaScript",
+        "CSS",
+        "SCSS"
+    ],
+    "author": "Wilfryn Viloria Rosario",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/iamwilllll/game/issues"
+    },
+    "homepage": "https://github.com/iamwilllll/game#readme",
+    "devDependencies": {
+        "gulp": "^5.0.0",
+        "gulp-sass": "^6.0.1",
+        "gulp-terser": "^2.1.0",
+        "prettier": "^3.5.3",
+        "sass": "^1.86.3",
+        "sharp": "^0.34.1"
+    }
+}

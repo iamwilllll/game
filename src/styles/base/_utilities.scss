@@ -1,0 +1,13 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.no-margin {
+    margin: 0;
+}
+
+.container {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: v.$spacing;
+}
