@@ -441,9 +441,7 @@ img {
 
 .game-modal {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transition: 1s;
 }
 .game-modal__close {
   display: flex;
@@ -459,6 +457,7 @@ img {
 }
 .game-modal__close button:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .cards {
@@ -505,6 +504,7 @@ img {
 .cards__play__again button:hover {
   background-color: #b292ff;
   cursor: pointer;
+  transform: scale(1.1);
 }
 .cards__message {
   font-size: 5rem;
@@ -516,6 +516,18 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.center-modal {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hiden-modal {
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .active,

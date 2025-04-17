@@ -1,10 +1,10 @@
 // Selects the modal element that contains the cards
 const gameModal = document.querySelector('.cards');
-let cardItem;
+let gameModalcardItem;
 
 /* Close game modal button */
 document.querySelector('#close-modal').addEventListener('click', () => {
-    closeModal(gameModal);
+    closeModal();
 });
 
 document.querySelector('#play-again').addEventListener('click', playAgain);
@@ -113,16 +113,16 @@ function playAgain() {
 }
 
 /* Main function to close modal */
-function closeModal(item) {
-    item.classList.toggle('display-none');
-    item.classList.toggle('display-flex');
+function closeModal() {
+    gameModal.classList.toggle('hiden-modal');
+    gameModal.classList.toggle('center-modal');
 }
 
 /*----------This is temporary code for testing----------*/
 /* open modal buton */
 document.querySelector('#play').addEventListener('click', () => {
-    gameModal.classList.toggle('display-none');
-    gameModal.classList.toggle('display-flex');
+    gameModal.classList.toggle('hiden-modal');
+    gameModal.classList.toggle('center-modal');
     startGame();
     //start game
 });
