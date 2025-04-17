@@ -8,14 +8,19 @@
     </head>
     <body>
         <main>
-            <section class="cards display-none">
-                <button class="cards__close button">
-                    <img src="/build/images/svg/close-icon.svg" alt="" />
-                </button>
+            <button class="button" id="play">Play</button>
+            <section class="cards game-modal display-none">
+                <div class="game-modal__close">
+                    <button class="button cards__close" id="close-modal"><img src="/build/images/svg/close-icon.svg" alt="" /></button>
+                    <p>Moves: <span id="attempts">0</span></p>
+                </div>
                 <div class="cards__container" id="game"></div>
-                <button class="cards__play button" id="play-again">Play again</button>
+                <div class="cards__play__again">
+                    <button class="button" id="play-again">Play again</button>
+                </div>
+                <div class="cards__message display-none">cards__message</div>
             </section>
         </main>
+        <script src="build/js/index.js"></script>
     </body>
-    <script src="build/js/main.js"></script>
 </html>

@@ -5,6 +5,5 @@
 @forward './base/variables';
 @forward './base/utilities';
 
-/*Layout styles*/
-@forward './layout/cards';
-@forward './layout/dot';
+@forward './components/card/card';
+@forward './layout/cards-modal';
