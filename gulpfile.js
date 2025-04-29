@@ -1,23 +1,25 @@
-// gulp, gulp-sass, gulp-terser, prettier, sass, sharp
+// gulp, gulp-sass, gulp-terser, gulp-typescript, prettier, sass, sharp
 
 import * as dartSass from 'sass'; // Import the dart sass module
 import gulpSass from 'gulp-sass'; // Import the gulp-sass module
 import terser from 'gulp-terser'; // Import the gulp-terser module to compress JS files
+import ts from 'gulp-typescript'; // Import the gulp-typescript module to compilate TS files
 import sharp from 'sharp'; // Import the sharp module for image manipulation
 import path from 'path'; // Import the path module to work with file paths
 import fs from 'fs'; // Import the fs module to work with the file system
 import { exec } from 'child_process'; // Import exec to run Prettier
 
 // Import Gulp methods
+
 import { src, dest, watch, series } from 'gulp';
 
 const sass = gulpSass(dartSass); // Initialize gulp-sass with dart-sass
 
 // Function to process JS files
-export function js() {
-    return src('src/scripts/**/*.js')
-        .pipe(terser()) // Compress .js files
-        .pipe(dest('build/js'));
+export function compileTs() {
+    const tsProject = ts.createProject('tsconfig.json');
+
+    return src('src/scripts/**/*.ts').pipe(tsProject()).js.pipe(terser()).pipe(dest('build/JavaScript'));
 }
 
 // Function to process CSS files
@@ -82,9 +84,9 @@ export function format(cb) {
 // Function to watch for changes in SCSS and JS files
 export function dev() {
     watch('src/styles/**/*.scss', css);
-    watch('src/scripts/**/*.js', js);
+    watch('src/TypeScript/**/*.ts', compileTs);
     watch('src/assets/images/**', crop);
 }
 
 // Default task that runs functions in series
-export default series(format, crop, js, css, dev);
+export default series(format, crop, compileTs, css, dev);
